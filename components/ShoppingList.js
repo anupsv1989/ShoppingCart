@@ -81,6 +81,7 @@ class ShoppingList extends Component {
 
 
         this.props.onAddItemtoCart(dataObj);
+        this.props.getItemsinCart();
     }
 
     render() {
@@ -89,7 +90,6 @@ class ShoppingList extends Component {
             <div>
                 <div className="site-card-wrapper">
                     <Row gutter={16}>
-
                         {this.state.displayList.map((item, index) =>
                             <Col span={4} className="listCols" key={index}>
                                 <Card

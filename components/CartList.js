@@ -15,15 +15,19 @@ class CartList extends Component {
         this.state = {
             cartDisplayItems: [],
             initialItems: 1,
-            itemsForPrice: [],
+            totalPriceOfItems: 0,
+            totalDiscountedPrice: 0,
+            totalPriceDisplay: 0
         }
     }
 
     componentDidMount() {
         this.setState({
             cartDisplayItems: this.props.itemsInCart,
-            itemsForPrice: this.props.itemsInCart
+        }, () => {
+            this.calculatePriceSum();
         })
+
         console.log(" this.props.itemsInCart did mount", this.props.itemsInCart)
     }
 
@@ -31,30 +35,70 @@ class CartList extends Component {
         console.log("NExt props in cartjs", nextProps)
     }
 
+    calculatePriceSum = () => {
+        let price = 0;
+        let discountedPrice = 0;
+        this.state.cartDisplayItems.map(x => {
+            price += x.item.price.actual;
+            discountedPrice += x.item.price.display;
+
+        })
+
+        let discPrice = discountedPrice - price;
+
+        this.setState({
+            totalPriceOfItems: price,
+            totalPriceDisplay: discountedPrice,
+            totalDiscountedPrice: discPrice
+        })
+        return price;
+    }
 
     increment = (item, index) => {
-        // let tempArr = this.state.itemsForPrice;
-        // tempArr.push(item);
+        let price = this.state.totalPriceOfItems;
+        let discPrice = this.state.totalDiscountedPrice;
+        let firstPrice = this.state.totalPriceDisplay;
+
+        price += item.price.actual;
+        firstPrice += item.price.display;
+        discPrice = firstPrice - price;
+
+
         this.setState({
-            // itemsForPrice: tempArr,
+            totalPriceOfItems: price,
+            totalPriceDisplay: firstPrice,
+            totalDiscountedPrice: discPrice,
             [index + item.name]: this.state[index + item.name] ? (this.state[index + item.name] + 1) : (this.state.initialItems + 1)
-        }, () => {
-            // console.log("temp arr", tempArr)
         })
     }
+
     decrement = (item, index) => {
-        // let tempArr = this.state.itemsForPrice;
-        // let index = tempArr.map(x => {
-        //     return x.index;
-        // }).indexOf(item.index);
-        // tempArr.splice(index, 1);
-
-        // console.log("After deleting items in array", tempArr)
-
+        let price = this.state.totalPriceOfItems;
+        let discPrice = this.state.totalDiscountedPrice;
+        let firstPrice = this.state.totalPriceDisplay;
+        if (this.state[index + item.name] != undefined) {
+            price -= item.price.actual;
+            firstPrice -= item.price.display;
+            discPrice = firstPrice - price;
+        }
         this.setState({
+            totalPriceOfItems: price,
+            totalPriceDisplay: firstPrice,
+            totalDiscountedPrice: discPrice,
             [index + item.name]: this.state[index + item.name] ? (this.state[index + item.name] - 1) : (this.state.initialItems - 1)
         })
+    }
 
+    removeItems = (item, idx) => {
+        let arr = this.state.cartDisplayItems;
+        let index = arr.map(x => {
+            return x.key;
+        }).indexOf(item.key);
+        arr.splice(index, 1);
+        this.setState({
+            cartDisplayItems: arr
+        })
+        console.log("Array after deleteion", arr)
     }
 
 
@@ -105,7 +149,7 @@ class CartList extends Component {
                                     </Col>
                                     <Col span={6}>
                                         <div className="cartListText">
-                                            <Button type="link" danger>
+                                            <Button type="link" danger onClick={() => this.removeItems(i.item, index)}>
                                                 Remove
                                             </Button>
                                         </div>
@@ -125,7 +169,7 @@ class CartList extends Component {
                                     Price
                                 </Col>
                                 <Col span={8}>
-                                    Amount
+                                    {this.state.totalPriceDisplay}
                                 </Col>
                             </Row>
                             <Row gutter={16}>
@@ -133,7 +177,7 @@ class CartList extends Component {
                                     Discount
                                 </Col>
                                 <Col span={8}>
-                                    Amount
+                                    {this.state.totalDiscountedPrice}
                                 </Col>
                             </Row>
                             <hr />
@@ -142,7 +186,7 @@ class CartList extends Component {
                                     Total
                                 </Col>
                                 <Col span={8}>
-                                    Amount
+                                    {this.state.totalPriceOfItems}
                                 </Col>
                             </Row>
 

@@ -57,7 +57,12 @@ function* onFetchItem() {
     }
 }
 
+function* onAddItemtoCart(payload) {
+    yield put(actions.getItemsinCart(payload));
+}
+
 
 export default function* rootSaga() {
     yield takeEvery("FETCH_ITEM", onFetchItem);
+    yield takeEvery("ADD_ITEM_TO_CART", onAddItemtoCart);
 }
