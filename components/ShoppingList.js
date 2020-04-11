@@ -102,11 +102,15 @@ class ShoppingList extends Component {
 
                                     <p>{item.name}</p>
                                     <p>
-                                        <span> &#8377; {item.price.actual}</span>
-                                        <span style={{ textDecoration: "line-through" }}> {item.price.display}</span>
-                                        <span>  {item.discount} % off</span>
+                                        <span><strong> &#8377;{item.price.actual} </strong> </span>
+                                        <span style={{ textDecoration: "line-through", fontSize: "12px", fontWeight: "bold", color: "#A9A9A9", marginLeft: "8px" }}> {item.price.display}</span>
+                                        <span style={{ fontSize: "14px", fontWeight: "700", color: "#009966", marginLeft: "8px" }}>  {item.discount}% off</span>
                                     </p>
-                                    <Button type="primary" shape="round" size="middle" onClick={() => this.addItemtoCart(item, index)}>
+                                    <Button type="primary"
+                                        shape="round"
+                                        size="middle"
+                                        style={{ backgroundColor: "#FFCC00", border: "0px", color: "#000000", marginLeft: "12%" }}
+                                        onClick={() => this.addItemtoCart(item, index)}>
                                         Add to Cart
                                     </Button>
 
