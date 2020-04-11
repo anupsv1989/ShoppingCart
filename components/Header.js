@@ -29,9 +29,11 @@ export default class Header extends Component {
                     <SearchList />
                 </div>
                 <div className="cartInMenu">
-                    <CartIcon />
+                    <Link href='/cart'>
+                        <CartIcon />
+                    </Link>
                 </div>
-            </div>
+            </div >
         )
     }
 }

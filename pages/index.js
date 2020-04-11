@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "../redux/rootSaga";
 import rootReducer from "../redux/rootReducer";
-import CartPage from "./list";
+import ListPage from "./list";
 import { Provider } from "react-redux";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -17,9 +17,8 @@ export default function basePage() {
   return (
     <Provider store={store}>
       <Header />
-
       <Layout>
-        <CartPage />
+        <ListPage />
       </Layout>
       <Footer />
     </Provider>
