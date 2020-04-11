@@ -21,16 +21,16 @@ export default class Header extends Component {
                 <Link href='/'>
                     <a style={linkStyle}>Home</a>
                 </Link>
-                <Link href='/list'>
+                {/* <Link href='/list'>
                     <a style={linkStyle}>List</a>
-                </Link>
+                </Link> */}
 
                 <div className="searchInMenu">
                     <SearchList />
                 </div>
                 <div className="cartInMenu">
                     <Link href='/cart'>
-                        <CartIcon />
+                        <a style={linkStyle}><CartIcon /></a>
                     </Link>
                 </div>
             </div >

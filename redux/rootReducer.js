@@ -18,14 +18,14 @@ const reducer = (state = initialState, action) => {
             break;
 
         case "GET_ITEMS_IN_CART":
-            newState.itemsInCart;
+            newState.itemsInCart = newState.itemsInCart;
             console.log("To get items in cart ", newState.itemsInCart)
             break;
 
         case "ADD_ITEM_TO_CART":
             console.log("Addinf more items ", action.payload)
             let tempData = action.payload;
-            let temp = newState.itemsInCart;
+            let { itemsInCart: temp = [] } = newState;
             temp.push(tempData);
             newState.itemsInCart = temp;
             console.log("After Adding items", newState.itemsInCart)

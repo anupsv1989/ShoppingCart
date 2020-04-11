@@ -24,17 +24,14 @@ class ListPage extends Component {
         this.state = {}
     }
 
-    componentDidMount() {
-        // fetchList
-        this.props.onFetchItem();
-    }
+
 
     render() {
         console.log("props data", this.props.shoppingListData)
         return (
             <>
                 <div className="containerDiv">
-                    <CartIcon />
+
                     <div className="leftNav">
                         <Filter />
                     </div>

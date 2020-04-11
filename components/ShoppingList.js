@@ -13,19 +13,22 @@ class ShoppingList extends Component {
         super(props);
         this.state = {
             existingItemsinCart: [],
-            displayList: []
+            displayList: [],
         }
     }
 
     componentWillReceiveProps(nextProps) {
         console.log("items in cart on update", nextProps)
+        const { applyRangeFilter = [] } = nextProps;
         this.setState({
             displayList: nextProps.listData
         })
-        if (nextProps.applyRangeFilter.length > 0) {
-            this.amountFilteredList(nextProps.applyRangeFilter);
+        if (applyRangeFilter.length > 0) {
+            console.log("In props .... will receive....apply range filter ")
+            this.amountFilteredList(applyRangeFilter);
         }
-        if (nextProps.applySearchFilter != "") {
+        if (nextProps.applySearchFilter && nextProps.applySearchFilter != "") {
+            console.log("In props .... will receive....apply SearCHH ")
             this.searchFilteredList(nextProps.applySearchFilter);
         }
     }
@@ -33,14 +36,13 @@ class ShoppingList extends Component {
     searchFilteredList = (val) => {
         console.log("Search value", val)
         let tempArr = [];
-        let currentData = this.props.listData;
+        let { listData: currentData = [] } = this.props;
 
         currentData.map(item => {
             if (item.name == val) {
                 tempArr.push(item)
             }
         })
-        console.log("filtered Array ", tempArr);
         this.setState({
             displayList: tempArr
         })
@@ -64,9 +66,6 @@ class ShoppingList extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            displayList: this.props.listData
-        })
         this.props.getItemsinCart();
     }
 
@@ -85,15 +84,13 @@ class ShoppingList extends Component {
     }
 
     render() {
-
-        console.log("shoppingListData cart ITems >>>>>>>", this.props.itemsInCart)
-        const { displayList } = this.state;
+        const { listData: displayList = [] } = this.props;
         return (
             <div>
                 <div className="site-card-wrapper">
                     <Row gutter={16}>
 
-                        {displayList.map((item, index) =>
+                        {this.state.displayList.map((item, index) =>
                             <Col span={4} className="listCols" key={index}>
                                 <Card
                                     style={{ padding: "7px" }}
