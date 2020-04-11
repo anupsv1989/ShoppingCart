@@ -3,6 +3,8 @@ import Link from 'next/link';
 import SearchList from "./SearchList";
 import CartIcon from "./CartIcon";
 
+import { StarOutlined } from '@ant-design/icons';
+
 const linkStyle = {
     marginRight: 15
 }
@@ -19,7 +21,7 @@ export default class Header extends Component {
         return (
             <div className="menuStyle">
                 <Link href='/'>
-                    <a style={linkStyle}>Home</a>
+                    <a style={linkStyle}> <StarOutlined /> Home</a>
                 </Link>
                 {/* <Link href='/list'>
                     <a style={linkStyle}>List</a>

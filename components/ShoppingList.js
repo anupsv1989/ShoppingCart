@@ -14,6 +14,7 @@ class ShoppingList extends Component {
         this.state = {
             existingItemsinCart: [],
             displayList: [],
+            isDisabled: false
         }
     }
 
@@ -69,6 +70,12 @@ class ShoppingList extends Component {
         this.props.getItemsinCart();
     }
 
+
+    checkForDisabled = () => {
+        console.log("Items in cart------------------->", this.props.itemsInCart)
+        return true;
+    }
+
     addItemtoCart = (item, index) => {
         console.log("Item --> ", item)
         console.log("Index --> ", index)
@@ -79,6 +86,9 @@ class ShoppingList extends Component {
             item
         }
 
+        this.setState({
+            [index + item.name]: true
+        })
 
         this.props.onAddItemtoCart(dataObj);
         this.props.getItemsinCart();
@@ -106,15 +116,12 @@ class ShoppingList extends Component {
                                     <Button type="primary"
                                         shape="round"
                                         size="middle"
+                                        disabled={this.state[index + item.name] ? this.state[index + item.name] : this.state.isDisabled}
                                         style={{ backgroundColor: "#FFCC00", border: "0px", color: "#000000", marginLeft: "12%" }}
                                         onClick={() => this.addItemtoCart(item, index)}>
                                         Add to Cart
                                     </Button>
-
                                 </Card>
-
-
-
                             </Col>
                         )
                         }

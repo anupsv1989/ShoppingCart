@@ -18,8 +18,8 @@ const reducer = (state = initialState, action) => {
             break;
 
         case "GET_ITEMS_IN_CART":
-            newState.itemsInCart = action.payload;
-            console.log("To get items in cart ", action.payload)
+            newState.itemsInCart = newState.itemsInCart;
+            console.log("To get items in cart ", newState.itemsInCart)
             break;
 
         case "ADD_ITEM_TO_CART":

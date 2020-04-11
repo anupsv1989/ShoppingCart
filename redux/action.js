@@ -28,9 +28,8 @@ const actions = {
         result
     }),
 
-    getItemsinCart: (payload) => ({
+    getItemsinCart: () => ({
         type: actions.GET_ITEMS_IN_CART,
-        payload
     }),
 
     onAddItemtoCart: (payload) => ({

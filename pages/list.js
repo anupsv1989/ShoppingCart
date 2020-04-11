@@ -31,7 +31,6 @@ class ListPage extends Component {
         return (
             <>
                 <div className="containerDiv">
-
                     <div className="leftNav">
                         <Filter />
                     </div>

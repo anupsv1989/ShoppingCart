@@ -112,7 +112,7 @@ class CartList extends Component {
                     <div className="cartLeftNav">
                         <div>
                             {this.state.cartDisplayItems.map((i, index) =>
-                                <Row gutter={16} key={index}>
+                                <Row gutter={16} key={index} style={{ border: "1px solid black", marginBottom: "5px" }}>
                                     <Col span={6}>
                                         <div className="cartListDiv">
                                             <img
@@ -123,11 +123,15 @@ class CartList extends Component {
                                     </Col>
                                     <Col span={6}>
                                         <div className="cartListText">
-                                            {i.item.name}
+                                            <span>{i.item.name}</span>
                                             <p>
-                                                <span> &#8377; {i.item.price.actual}</span>
-                                                <span style={{ textDecoration: "line-through" }}> {i.item.price.display}</span>
-                                                <span>  {i.item.discount} % off</span>
+                                                <span><strong>&#8377; {i.item.price.actual}</strong> </span>
+                                                <span style={{ textDecoration: "line-through", fontSize: "12px", fontWeight: "bold", color: "#A9A9A9", marginLeft: "8px" }}>
+                                                    {i.item.price.display}
+                                                </span>
+                                                <span style={{ fontSize: "14px", fontWeight: "700", color: "#009966", marginLeft: "8px" }}>
+                                                    {i.item.discount} % off
+                                                </span>
                                             </p>
                                         </div>
                                     </Col>
@@ -150,7 +154,7 @@ class CartList extends Component {
                                     <Col span={6}>
                                         <div className="cartListText">
                                             <Button type="link" danger onClick={() => this.removeItems(i.item, index)}>
-                                                Remove
+                                                <strong> Remove </strong>
                                             </Button>
                                         </div>
                                     </Col>
@@ -160,11 +164,11 @@ class CartList extends Component {
                         </div>
                     </div>
                     <div className="cartRightNav">
-                        <Card title="Price Details" style={{ width: 300 }}>
+                        <Card title="Price Details" style={{ width: 300, border: "1px solid black " }}>
                             {/* <p>Price --no of items -- </p>
                             <p>discount</p>
                             <p>Total Payable</p> */}
-                            <Row gutter={16}>
+                            <Row gutter={16} style={{ marginBottom: "5px", marginTop: "5px" }}>
                                 <Col span={16}>
                                     Price
                                 </Col>
@@ -181,7 +185,7 @@ class CartList extends Component {
                                 </Col>
                             </Row>
                             <hr />
-                            <Row gutter={16}>
+                            <Row gutter={16} style={{ marginBottom: "5px", marginTop: "5px" }}>
                                 <Col span={16}>
                                     Total
                                 </Col>

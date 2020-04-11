@@ -33,7 +33,8 @@ export async function get(url) {
 }
 
 const fetchListData = async () =>
-    await get("https://api.jsonbin.io/b/5e8c3a45af7c476bc47e477d");
+    await get("https://api.jsonbin.io/b/5e8c3ad0ff9c906bdf1d5380");
+// await get("https://api.jsonbin.io/b/5e8c3a45af7c476bc47e477d");
 
 function* onFetchItem() {
     // yield delay(4000);
@@ -57,12 +58,7 @@ function* onFetchItem() {
     }
 }
 
-function* onAddItemtoCart(payload) {
-    yield put(actions.getItemsinCart(payload));
-}
-
 
 export default function* rootSaga() {
     yield takeEvery("FETCH_ITEM", onFetchItem);
-    yield takeEvery("ADD_ITEM_TO_CART", onAddItemtoCart);
 }
