@@ -24,12 +24,15 @@ class ShoppingList extends Component {
         this.setState({
             displayList: nextProps.listData
         })
+        if (nextProps.renderSortedData && nextProps.renderSortedData.length > 0) {
+            this.setState({
+                displayList: nextProps.renderSortedData
+            })
+        }
         if (applyRangeFilter.length > 0) {
-            console.log("In props .... will receive....apply range filter ")
             this.amountFilteredList(applyRangeFilter);
         }
         if (nextProps.applySearchFilter && nextProps.applySearchFilter != "") {
-            console.log("In props .... will receive....apply SearCHH ")
             this.searchFilteredList(nextProps.applySearchFilter);
         }
     }
@@ -60,7 +63,6 @@ class ShoppingList extends Component {
                 tempArr.push(item)
             }
         })
-        console.log("filtered Array ", tempArr);
         this.setState({
             displayList: tempArr
         })
@@ -71,16 +73,9 @@ class ShoppingList extends Component {
     }
 
 
-    checkForDisabled = () => {
-        console.log("Items in cart------------------->", this.props.itemsInCart)
-        return true;
-    }
+
 
     addItemtoCart = (item, index) => {
-        console.log("Item --> ", item)
-        console.log("Index --> ", index)
-        console.log("onclick item --> ", this.props.itemsInCart)
-
         let dataObj = {
             index,
             item
@@ -96,6 +91,9 @@ class ShoppingList extends Component {
 
     render() {
         const { listData: displayList = [] } = this.props;
+
+        console.log("renderSortedData <<<<<>>>>>> renderSortedData", this.props.renderSortedData)
+
         return (
             <div>
                 <div className="site-card-wrapper">

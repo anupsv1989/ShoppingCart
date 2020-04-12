@@ -5,8 +5,8 @@ export default class Footer extends PureComponent {
 
     render() {
         return (
-            <div className="footer">
-                copyright
+            <div className="footer" style={{ textAlign: "center", color: "#ffffff" }}>
+                &copy; copyright
             </div>
         );
     }

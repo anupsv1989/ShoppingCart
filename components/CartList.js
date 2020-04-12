@@ -1,7 +1,7 @@
 
 import { Component } from "react";
 import { Card, Col, Row, Button } from 'antd';
-
+import Link from 'next/link';
 import actions from "../redux/action";
 import { connect } from "react-redux";
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
@@ -22,10 +22,12 @@ class CartList extends Component {
     }
 
     componentDidMount() {
+        let _this = this;
         this.setState({
             cartDisplayItems: this.props.itemsInCart,
         }, () => {
-            this.calculatePriceSum();
+            if (_this.props.itemsInCart && _this.props.itemsInCart.length > 0)
+                _this.calculatePriceSum();
         })
 
         console.log(" this.props.itemsInCart did mount", this.props.itemsInCart)
@@ -91,12 +93,17 @@ class CartList extends Component {
 
     removeItems = (item, idx) => {
         let arr = this.state.cartDisplayItems;
+        let _this = this;
         let index = arr.map(x => {
             return x.key;
         }).indexOf(item.key);
         arr.splice(index, 1);
         this.setState({
             cartDisplayItems: arr
+        }, () => {
+            if (_this.state.cartDisplayItems.length > 0) {
+                _this.calculatePriceSum();
+            }
         })
         console.log("Array after deleteion", arr)
     }
@@ -109,93 +116,105 @@ class CartList extends Component {
         return (
             <>
                 <div className="cartContainerDiv">
-                    <div className="cartLeftNav">
+                    {(this.state.cartDisplayItems && this.state.cartDisplayItems.length > 0) ?
                         <div>
-                            {this.state.cartDisplayItems.map((i, index) =>
-                                <Row gutter={16} key={index} style={{ border: "1px solid black", marginBottom: "5px" }}>
-                                    <Col span={6}>
-                                        <div className="cartListDiv">
-                                            <img
-                                                alt="example"
-                                                src="https://cdn.britannica.com/s:700x500/77/170477-050-1C747EE3/Laptop-computer.jpg"
-                                            />
-                                        </div>
-                                    </Col>
-                                    <Col span={6}>
-                                        <div className="cartListText">
-                                            <span>{i.item.name}</span>
-                                            <p>
-                                                <span><strong>&#8377; {i.item.price.actual}</strong> </span>
-                                                <span style={{ textDecoration: "line-through", fontSize: "12px", fontWeight: "bold", color: "#A9A9A9", marginLeft: "8px" }}>
-                                                    {i.item.price.display}
+                            <div className="cartLeftNav">
+                                <div>
+
+                                    {this.state.cartDisplayItems.map((i, index) =>
+                                        <Row gutter={16} key={index} style={{ border: "1px solid black", marginBottom: "5px" }}>
+                                            <Col span={6}>
+                                                <div className="cartListDiv">
+                                                    <img
+                                                        alt="example"
+                                                        src="https://cdn.britannica.com/s:700x500/77/170477-050-1C747EE3/Laptop-computer.jpg"
+                                                    />
+                                                </div>
+                                            </Col>
+                                            <Col span={6}>
+                                                <div className="cartListText">
+                                                    <span>{i.item.name}</span>
+                                                    <p>
+                                                        <span><strong>&#8377; {i.item.price.actual}</strong> </span>
+                                                        <span style={{ textDecoration: "line-through", fontSize: "12px", fontWeight: "bold", color: "#A9A9A9", marginLeft: "8px" }}>
+                                                            {i.item.price.display}
+                                                        </span>
+                                                        <span style={{ fontSize: "14px", fontWeight: "700", color: "#009966", marginLeft: "8px" }}>
+                                                            {i.item.discount} % off
                                                 </span>
-                                                <span style={{ fontSize: "14px", fontWeight: "700", color: "#009966", marginLeft: "8px" }}>
-                                                    {i.item.discount} % off
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </Col>
-                                    <Col span={6}>
-                                        <div className="cartListText">
-                                            <Button type="primary" shape="circle" icon={<PlusOutlined />}
-                                                size="middle"
-                                                onClick={() => this.increment(i.item, index)} />
+                                                    </p>
+                                                </div>
+                                            </Col>
+                                            <Col span={6}>
+                                                <div className="cartListText">
+                                                    <Button type="primary" shape="circle" icon={<PlusOutlined />}
+                                                        size="middle"
+                                                        onClick={() => this.increment(i.item, index)} />
 
-                                            <Button type="dashed">
-                                                {this.state[index + i.item.name] > 0 ? this.state[index + i.item.name] : this.state.initialItems}
-                                            </Button>
+                                                    <Button type="dashed">
+                                                        {this.state[index + i.item.name] > 0 ? this.state[index + i.item.name] : this.state.initialItems}
+                                                    </Button>
 
-                                            <Button type="primary" shape="circle" icon={<MinusOutlined />}
-                                                size="middle"
-                                                disabled={this.state[index + i.item.name] == 1 ? true : false}
-                                                onClick={() => this.decrement(i.item, index)} />
-                                        </div>
-                                    </Col>
-                                    <Col span={6}>
-                                        <div className="cartListText">
-                                            <Button type="link" danger onClick={() => this.removeItems(i.item, index)}>
-                                                <strong> Remove </strong>
-                                            </Button>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            )}
+                                                    <Button type="primary" shape="circle" icon={<MinusOutlined />}
+                                                        size="middle"
+                                                        disabled={this.state[index + i.item.name] == 1 ? true : false}
+                                                        onClick={() => this.decrement(i.item, index)} />
+                                                </div>
+                                            </Col>
+                                            <Col span={6}>
+                                                <div className="cartListText">
+                                                    <Button type="link" danger onClick={() => this.removeItems(i.item, index)}>
+                                                        <strong> Remove </strong>
+                                                    </Button>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="cartRightNav">
+                                <Card title="Price Details" style={{ width: 300, border: "1px solid black " }}>
 
+                                    <Row gutter={16} style={{ marginBottom: "5px", marginTop: "5px" }}>
+                                        <Col span={16}>
+                                            Price
+                                </Col>
+                                        <Col span={8}>
+                                            {this.state.totalPriceDisplay}
+                                        </Col>
+                                    </Row>
+                                    <Row gutter={16}>
+                                        <Col span={16}>
+                                            Discount
+                                </Col>
+                                        <Col span={8}>
+                                            {this.state.totalDiscountedPrice}
+                                        </Col>
+                                    </Row>
+                                    <hr />
+                                    <Row gutter={16} style={{ marginBottom: "5px", marginTop: "5px" }}>
+                                        <Col span={16}>
+                                            Total
+                                </Col>
+                                        <Col span={8}>
+                                            {this.state.totalPriceOfItems}
+                                        </Col>
+                                    </Row>
+
+                                </Card>
+                            </div>
                         </div>
-                    </div>
-                    <div className="cartRightNav">
-                        <Card title="Price Details" style={{ width: 300, border: "1px solid black " }}>
-                            {/* <p>Price --no of items -- </p>
-                            <p>discount</p>
-                            <p>Total Payable</p> */}
-                            <Row gutter={16} style={{ marginBottom: "5px", marginTop: "5px" }}>
-                                <Col span={16}>
-                                    Price
-                                </Col>
-                                <Col span={8}>
-                                    {this.state.totalPriceDisplay}
-                                </Col>
-                            </Row>
-                            <Row gutter={16}>
-                                <Col span={16}>
-                                    Discount
-                                </Col>
-                                <Col span={8}>
-                                    {this.state.totalDiscountedPrice}
-                                </Col>
-                            </Row>
-                            <hr />
-                            <Row gutter={16} style={{ marginBottom: "5px", marginTop: "5px" }}>
-                                <Col span={16}>
-                                    Total
-                                </Col>
-                                <Col span={8}>
-                                    {this.state.totalPriceOfItems}
-                                </Col>
-                            </Row>
+                        :
 
-                        </Card>
-                    </div>
+                        <div>
+                            Cart is Empty
+                            To add items into cart click
+                                      <Link href='/'>
+                                <a> Home</a>
+                            </Link>
+                        </div>
+                    }
+
                 </div>
             </>
         )

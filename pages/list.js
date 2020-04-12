@@ -21,9 +21,16 @@ class ListPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            dataFromSorter: []
+        }
     }
 
+    callChild = (dataFromSorter) => {
+        this.setState({
+            dataFromSorter: dataFromSorter
+        })
+    }
 
 
     render() {
@@ -35,8 +42,11 @@ class ListPage extends Component {
                         <Filter />
                     </div>
                     <div className="mainComponent">
-                        <Sorter />
-                        <ShoppingList listData={this.props.shoppingListData} />
+                        <Sorter callParent={this.callChild} listData={this.props.shoppingListData} />
+                        <ShoppingList
+                            listData={this.props.shoppingListData}
+                            renderSortedData={this.state.dataFromSorter}
+                        />
                     </div>
                 </div>
             </>
