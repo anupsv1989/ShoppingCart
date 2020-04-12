@@ -1,11 +1,14 @@
 {
+  "homepage": "http://anupsv1989.github.io/ShoppingCart",
   "name": "shoppingcart",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "antd": "^4.1.1",
