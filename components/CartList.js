@@ -180,7 +180,7 @@ class CartList extends Component {
                                             {this.state.totalPriceDisplay}
                                         </Col>
                                     </Row>
-                                    <Row gutter={16}>
+                                    <Row gutter={16} className="cartContainerDiv__cartRightNav--row">
                                         <Col span={16}>
                                             Discount
                                 </Col>

@@ -45,7 +45,7 @@ export default class Sorter extends PureComponent {
         //     { "name": "item 8", "price": { "actual": 200, "display": 900 }, "discount": 64 }
         // ]
 
-        // let items = this.props.listData;
+        let items = this.props.listData;
         items.sort(function (a, b) {
             if (type == "HL") {
                 return a.price.actual - b.price.actual;
