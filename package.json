@@ -8,11 +8,10 @@
     "build": "next build",
     "start": "next start",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d .next"
   },
   "dependencies": {
     "antd": "^4.1.1",
-    "gh-pages": "^2.2.0",
     "less": "^3.11.1",
     "next": "9.3.4",
     "next-redux-saga": "^4.1.2",
@@ -26,6 +25,7 @@
     "webpack": "^4.42.1"
   },
   "devDependencies": {
+    "gh-pages": "^2.2.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
