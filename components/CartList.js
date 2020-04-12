@@ -105,26 +105,23 @@ class CartList extends Component {
                 _this.calculatePriceSum();
             }
         })
-        console.log("Array after deleteion", arr)
     }
 
 
     render() {
-        console.log("props data in casrt", this.props.itemsInCart)
-        console.log("props data in casrt cartDisplayItems", this.state.cartDisplayItems)
         const { itemsInCart } = this.props;
         return (
             <>
                 <div className="cartContainerDiv">
                     {(this.state.cartDisplayItems && this.state.cartDisplayItems.length > 0) ?
                         <div>
-                            <div className="cartLeftNav">
+                            <div className="cartContainerDiv__cartLeftNav">
                                 <div>
 
                                     {this.state.cartDisplayItems.map((i, index) =>
-                                        <Row gutter={16} key={index} style={{ border: "1px solid black", marginBottom: "5px" }}>
+                                        <Row gutter={16} key={index} className="cartContainerDiv__cartLeftNav--Row">
                                             <Col span={6}>
-                                                <div className="cartListDiv">
+                                                <div className="cartContainerDiv__cartLeftNav--cartListDiv">
                                                     <img
                                                         alt="example"
                                                         src="https://cdn.britannica.com/s:700x500/77/170477-050-1C747EE3/Laptop-computer.jpg"
@@ -132,26 +129,26 @@ class CartList extends Component {
                                                 </div>
                                             </Col>
                                             <Col span={6}>
-                                                <div className="cartListText">
+                                                <div className="cartContainerDiv__cartLeftNav--cartListText">
                                                     <span>{i.item.name}</span>
                                                     <p>
                                                         <span><strong>&#8377; {i.item.price.actual}</strong> </span>
-                                                        <span style={{ textDecoration: "line-through", fontSize: "12px", fontWeight: "bold", color: "#A9A9A9", marginLeft: "8px" }}>
+                                                        <span className="shoppingListWrap__listCols--cardprice">
                                                             {i.item.price.display}
                                                         </span>
-                                                        <span style={{ fontSize: "14px", fontWeight: "700", color: "#009966", marginLeft: "8px" }}>
+                                                        <span className="shoppingListWrap__listCols--carddiscount">
                                                             {i.item.discount} % off
                                                 </span>
                                                     </p>
                                                 </div>
                                             </Col>
                                             <Col span={6}>
-                                                <div className="cartListText">
+                                                <div className="cartContainerDiv__cartLeftNav--cartListText">
                                                     <Button type="primary" shape="circle" icon={<PlusOutlined />}
                                                         size="middle"
                                                         onClick={() => this.increment(i.item, index)} />
 
-                                                    <Button type="dashed">
+                                                    <Button type="dashed" style={{ margin: "5px" }}>
                                                         {this.state[index + i.item.name] > 0 ? this.state[index + i.item.name] : this.state.initialItems}
                                                     </Button>
 
@@ -162,7 +159,7 @@ class CartList extends Component {
                                                 </div>
                                             </Col>
                                             <Col span={6}>
-                                                <div className="cartListText">
+                                                <div className="cartContainerDiv__cartLeftNav--cartListText">
                                                     <Button type="link" danger onClick={() => this.removeItems(i.item, index)}>
                                                         <strong> Remove </strong>
                                                     </Button>
@@ -172,10 +169,10 @@ class CartList extends Component {
                                     )}
                                 </div>
                             </div>
-                            <div className="cartRightNav">
-                                <Card title="Price Details" style={{ width: 300, border: "1px solid black " }}>
+                            <div className="cartContainerDiv__cartRightNav">
+                                <Card title="Price Details" className="cartContainerDiv__cartRightNav--card">
 
-                                    <Row gutter={16} style={{ marginBottom: "5px", marginTop: "5px" }}>
+                                    <Row gutter={16} className="cartContainerDiv__cartRightNav--row">
                                         <Col span={16}>
                                             Price
                                 </Col>
@@ -192,7 +189,7 @@ class CartList extends Component {
                                         </Col>
                                     </Row>
                                     <hr />
-                                    <Row gutter={16} style={{ marginBottom: "5px", marginTop: "5px" }}>
+                                    <Row gutter={16} className="cartContainerDiv__cartRightNav--row">
                                         <Col span={16}>
                                             Total
                                 </Col>

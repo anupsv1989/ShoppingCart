@@ -48,20 +48,22 @@ class Filter extends PureComponent {
 
             <div className="filterConatiner">
                 <h3>Filters</h3>
-                <Slider
-                    range
-                    min={100}
-                    max={3000}
-                    marks={marks}
-                    defaultValue={[100, 900]}
-                    tooltipVisible
-                    tooltipPlacement="bottom"
-                    onChange={this.getAmountRange}
-                />
+                <div className="filterConatiner__slider">
+                    <Slider
+                        range
+                        min={100}
+                        max={3000}
+                        marks={marks}
+                        defaultValue={[100, 900]}
+                        tooltipVisible
+                        tooltipPlacement="top"
+                        onChange={this.getAmountRange}
+                    />
+                </div>
                 <Button type="primary"
                     shape="round"
                     size="middle"
-                    style={{ marginTop: "50px", left: "30%", width: "100px" }}
+                    className="filterConatiner__btn"
                     onClick={this.onApplyFilter}>
                     Apply
                 </Button>

@@ -20,12 +20,6 @@ class CartIcon extends Component {
         this.props.getItemsinCart();
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", nextProps.itemsInCart)
-
-
-    }
-
     render() {
 
         return (

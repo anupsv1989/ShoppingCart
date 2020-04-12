@@ -19,7 +19,7 @@ class BasePage extends Component {
   render() {
 
     return (
-      <div>
+      <div className="baseWrap">
         <Header />
         <Layout>
           <ListPage {...this.props} />

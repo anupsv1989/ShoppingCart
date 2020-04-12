@@ -1,18 +1,11 @@
 import App from 'next/app'
-import '../style/commonStyle.css';
-import 'antd/dist/antd.css';
-// import { createStore, applyMiddleware } from "redux";
-// import createSagaMiddleware from "redux-saga";
-
-import withRedux from 'next-redux-wrapper'
-import withReduxSaga from 'next-redux-saga'
-
+import '../style/commonStyle.scss';
+import 'antd/dist/antd.less';
+// import 'antd/dist/antd.css';
+import withRedux from 'next-redux-wrapper';
+import withReduxSaga from 'next-redux-saga';
 import { Provider } from "react-redux";
-
-import createStore from '../redux/createStore'
-// export default function MyApp({ Component, pageProps }) {
-//     return <Component {...pageProps} />
-// }
+import createStore from '../redux/createStore';
 
 
 class MyApp extends App {

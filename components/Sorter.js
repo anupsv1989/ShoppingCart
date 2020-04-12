@@ -71,7 +71,7 @@ export default class Sorter extends PureComponent {
             <div>
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
                     <Menu.Item key="sortby" disabled>
-                        <span style={{ fontSize: "14px", fontWeight: "bolder" }}>Sort By  </span>
+                        <span className="sorter__menu--nav1">Sort By  </span>
                     </Menu.Item>
                     <Menu.Item key="highlow">
                         <FallOutlined />

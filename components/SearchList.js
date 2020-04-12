@@ -19,7 +19,6 @@ class SearchList extends PureComponent {
     }
 
     valOfSearchList = (value) => {
-        console.log("Values", value)
         this.props.onApplySearch(value);
     }
 
@@ -27,9 +26,8 @@ class SearchList extends PureComponent {
         return (
 
             <Search
-                placeholder="input search text"
+                placeholder="enter item name"
                 onSearch={this.valOfSearchList}
-                // onSearch={value => console.log(value)}
                 style={{ width: 200 }}
             />
         );

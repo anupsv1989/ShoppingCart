@@ -19,7 +19,6 @@ class ShoppingList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("items in cart on update", nextProps)
         const { applyRangeFilter = [] } = nextProps;
         this.setState({
             displayList: nextProps.listData
@@ -96,26 +95,26 @@ class ShoppingList extends Component {
 
         return (
             <div>
-                <div className="site-card-wrapper">
+                <div className="shoppingListWrap">
                     <Row gutter={16}>
                         {this.state.displayList.map((item, index) =>
-                            <Col span={4} className="listCols" key={index}>
+                            <Col span={4} className="shoppingListWrap__listCols" key={index}>
                                 <Card
-                                    style={{ padding: "7px" }}
+                                    className="shoppingListWrap__listCols--card"
                                     cover={<img alt="example" src="https://cdn.britannica.com/s:700x500/77/170477-050-1C747EE3/Laptop-computer.jpg" />}
                                 >
 
                                     <p>{item.name}</p>
                                     <p>
                                         <span><strong> &#8377;{item.price.actual} </strong> </span>
-                                        <span style={{ textDecoration: "line-through", fontSize: "12px", fontWeight: "bold", color: "#A9A9A9", marginLeft: "8px" }}> {item.price.display}</span>
-                                        <span style={{ fontSize: "14px", fontWeight: "700", color: "#009966", marginLeft: "8px" }}>  {item.discount}% off</span>
+                                        <span className="shoppingListWrap__listCols--cardprice"> {item.price.display}</span>
+                                        <span className="shoppingListWrap__listCols--carddiscount">  {item.discount}% off</span>
                                     </p>
                                     <Button type="primary"
                                         shape="round"
                                         size="middle"
                                         disabled={this.state[index + item.name] ? this.state[index + item.name] : this.state.isDisabled}
-                                        style={{ backgroundColor: "#FFCC00", border: "0px", color: "#000000", marginLeft: "12%" }}
+                                        className="shoppingListWrap__listCols--AddBtn"
                                         onClick={() => this.addItemtoCart(item, index)}>
                                         Add to Cart
                                     </Button>
