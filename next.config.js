@@ -7,10 +7,20 @@ const withCSS = require("@zeit/next-css");
  */
 const withLess = require('@zeit/next-less');
 
+const assetPrefix = '/ShoppingCart';
+
 module.exports = withCSS(withLess(withSass({
     lessLoaderOptions: {
         javascriptEnabled: true
     },
+    exportPathMap: function () { // /Next-React-Components
+        return {
+            "/": { page: "/2" },
+            "/2": { page: "/2" },
+            "/index": { page: "/2" },
+        }
+    },
+    assetPrefix: assetPrefix,
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
         // Note: we provide webpack above so you should not `require` it
         // Perform customizations to webpack config
