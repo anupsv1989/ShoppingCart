@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default reducer;","map":{"version":3,"sources":["D:/RandDChamber/MyGitHub/ShoppingCart/shoppingcart/redux/rootReducer.js"],"names":["reducer"],"mappings":"AAOA,eAAeA,OAAf","sourcesContent":["\r\n\r\n\r\n\r\n\r\n\r\n\r\nexport default reducer;"]},"metadata":{},"sourceType":"module"}
