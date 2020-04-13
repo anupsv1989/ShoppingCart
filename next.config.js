@@ -15,9 +15,9 @@ module.exports = withCSS(withLess(withSass({
     },
     exportPathMap: function () { // /Next-React-Components
         return {
-            "/": { page: "/2" },
-            "/2": { page: "/2" },
-            "/index": { page: "/2" },
+            "/": { page: "/" },
+            "/cart": { page: "/cart" },
+            "/list": { page: "/" },
         }
     },
     assetPrefix: assetPrefix,
@@ -26,7 +26,12 @@ module.exports = withCSS(withLess(withSass({
         // Perform customizations to webpack config
         // Important: return the modified config
         // config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
-
+        
+        config.plugins.push(
+            new webpack.DefinePlugin({
+                'process.env.ASSET_PREFIX': JSON.stringify(assetPrefix),
+            }),
+        );
         return config;
     }
 })));
