@@ -11,6 +11,7 @@ const actions = {
 
     APPLY_FILTER: "APPLY_FILTER",
     APPLY_SEARCH: "APPLY_SEARCH",
+    APPLY_SORT: "APPLY_SORT",
 
 
     onFetchItem: () => ({
@@ -49,6 +50,11 @@ const actions = {
 
     onApplySearch: (payload) => ({
         type: actions.APPLY_SEARCH,
+        payload
+    }),
+
+    applySortAction: (payload) => ({
+        type: actions.APPLY_SORT,
         payload
     })
 

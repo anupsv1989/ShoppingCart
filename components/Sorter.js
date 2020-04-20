@@ -6,8 +6,14 @@ import {
     RiseOutlined,
 } from '@ant-design/icons';
 
+import actions from "../redux/action";
+import { connect } from "react-redux";
+
+const { applySortAction } = actions;
+
+
 const { SubMenu } = Menu;
-export default class Sorter extends PureComponent {
+class Sorter extends PureComponent {
 
     state = {
         current: 'mail',
@@ -21,48 +27,16 @@ export default class Sorter extends PureComponent {
         });
 
         if (active == "highlow") {
-            this.applySort("HL");
+            this.applySortAction("HL");
         } else if (active == "lowhigh") {
-            this.applySort("LH");
+            this.applySortAction("LH");
         } else if (active == "discount") {
-            this.applySort("DIS");
+            this.applySortAction("DIS");
         } else {
             console.log("Else")
         }
     };
 
-    applySort = (type) => {
-
-        // test data
-        // let items = [
-        //     { "name": "item 1", "price": { "actual": 100, "display": 900 }, "discount": 64 },
-        //     { "name": "item 2", "price": { "actual": 200, "display": 900 }, "discount": 64 },
-        //     { "name": "item 3", "price": { "actual": 300, "display": 900 }, "discount": 64 },
-        //     { "name": "item 4", "price": { "actual": 700, "display": 900 }, "discount": 64 },
-        //     { "name": "item 5", "price": { "actual": 600, "display": 900 }, "discount": 64 },
-        //     { "name": "item 6", "price": { "actual": 900, "display": 900 }, "discount": 64 },
-        //     { "name": "item 7", "price": { "actual": 400, "display": 900 }, "discount": 64 },
-        //     { "name": "item 8", "price": { "actual": 200, "display": 900 }, "discount": 64 }
-        // ]
-
-        let items = this.props.listData;
-        items.sort(function (a, b) {
-            if (type == "HL") {
-                return a.price.actual - b.price.actual;
-            }
-            if (type == "LH") {
-                return b.price.actual - a.price.actual;
-            }
-            if (type == "DIS") {
-                return a.discount - b.discount;
-            }
-
-        })
-
-        console.log("Items sorted", items)
-        this.props.callParent(items);
-
-    }
 
 
 
@@ -90,4 +64,17 @@ export default class Sorter extends PureComponent {
         );
     }
 }
+
+
+
+const mapStateToProps = state => {
+    return {
+
+    };
+};
+
+
+export default connect(
+    mapStateToProps, { applySortAction }
+)(Sorter);
 

@@ -7,6 +7,7 @@ const initialState = {
     itemsInCart: [],
     applyRangeFilter: [],
     applySearchFilter: "",
+    applySortAction: "",
 };
 const reducer = (state = initialState, action) => {
     const newState = { ...state };
@@ -45,6 +46,10 @@ const reducer = (state = initialState, action) => {
 
         case "APPLY_SEARCH":
             newState.applySearchFilter = action.payload
+            break;
+
+        case "APPLY_SORT":
+            newState.applySortAction = action.payload
             break;
 
 
