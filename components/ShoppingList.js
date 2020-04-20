@@ -45,10 +45,10 @@ class ShoppingList extends Component {
     sortFilteredList = (type) => {
         let items = this.props.listData;
         items.sort(function (a, b) {
-            if (type == "HL") {
+            if (type == "LH") {
                 return a.price.actual - b.price.actual;
             }
-            if (type == "LH") {
+            if (type == "HL") {
                 return b.price.actual - a.price.actual;
             }
             if (type == "DIS") {
