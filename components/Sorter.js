@@ -27,11 +27,11 @@ class Sorter extends PureComponent {
         });
 
         if (active == "highlow") {
-            this.applySortAction("HL");
+            this.props.applySortAction("HL");
         } else if (active == "lowhigh") {
-            this.applySortAction("LH");
+            this.props.applySortAction("LH");
         } else if (active == "discount") {
-            this.applySortAction("DIS");
+            this.props.applySortAction("DIS");
         } else {
             console.log("Else")
         }
