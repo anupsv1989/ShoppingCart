@@ -11035,42 +11035,44 @@ function onFetchItem() {
           }];
 
           if (!(searchResult !== undefined)) {
-            _context3.next = 12;
+            _context3.next = 13;
             break;
           }
+
+          console.log("Inside sAga On Fethc Item 1 ", searchResult);
 
           if (!(searchResult.items.length > 0)) {
-            _context3.next = 10;
+            _context3.next = 11;
             break;
           }
 
-          _context3.next = 8;
+          _context3.next = 9;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_action__WEBPACK_IMPORTED_MODULE_2__["default"].onFetchItemSuccess(searchResult));
 
-        case 8:
-          _context3.next = 12;
+        case 9:
+          _context3.next = 13;
           break;
 
-        case 10:
-          _context3.next = 12;
+        case 11:
+          _context3.next = 13;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_action__WEBPACK_IMPORTED_MODULE_2__["default"].onFetchItemError(errMsg));
 
-        case 12:
-          _context3.next = 18;
+        case 13:
+          _context3.next = 19;
           break;
 
-        case 14:
-          _context3.prev = 14;
+        case 15:
+          _context3.prev = 15;
           _context3.t0 = _context3["catch"](2);
-          _context3.next = 18;
+          _context3.next = 19;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_action__WEBPACK_IMPORTED_MODULE_2__["default"].onFetchItemError(errMsg));
 
-        case 18:
+        case 19:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked, null, [[2, 14]]);
+  }, _marked, null, [[2, 15]]);
 }
 
 function rootSaga() {
