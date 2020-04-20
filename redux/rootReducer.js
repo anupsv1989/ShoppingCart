@@ -7,7 +7,7 @@ const initialState = {
     itemsInCart: [],
     applyRangeFilter: [],
     applySearchFilter: "",
-    applySortAction: "",
+    applySortActionData: "",
 };
 const reducer = (state = initialState, action) => {
     const newState = { ...state };
@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => {
             break;
 
         case "APPLY_SORT":
-            newState.applySortAction = action.payload
+            newState.applySortActionData = action.payload
             break;
 
 

@@ -23,7 +23,7 @@ class ShoppingList extends Component {
         this.setState({
             displayList: nextProps.listData
         })
-        console.log("NExt props ----111----sorted arr--->", nextProps.applySortAction)
+        console.log("NExt props ----111----sorted arr--->", nextProps.applySortActionData)
         if (nextProps.renderSortedData && nextProps.renderSortedData.length > 0) {
 
             this.setState({
@@ -36,9 +36,9 @@ class ShoppingList extends Component {
         if (nextProps.applySearchFilter && nextProps.applySearchFilter != "") {
             this.searchFilteredList(nextProps.applySearchFilter);
         }
-        if (nextProps.applySortAction && nextProps.applySortAction != "") {
-            console.log("NExt props --------sorted arr--->", nextProps.applySortAction)
-            this.sortFilteredList(nextProps.applySortAction);
+        if (nextProps.applySortActionData && nextProps.applySortActionData != "") {
+            console.log("NExt props --------sorted arr--->", nextProps.applySortActionData)
+            this.sortFilteredList(nextProps.applySortActionData);
         }
     }
 
@@ -169,7 +169,7 @@ const mapStateToProps = state => {
     return {
         itemsInCart: state.itemsInCart,
         applySearchFilter: state.applySearchFilter,
-        applySortAction: state.applySortAction,
+        applySortActionData: state.applySortActionData,
         applyRangeFilter: state.applyRangeFilter
     };
 };
