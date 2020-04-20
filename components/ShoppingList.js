@@ -67,7 +67,7 @@ class ShoppingList extends Component {
     searchFilteredList = (val) => {
         console.log("Search value", val)
         let tempArr = [];
-        let { listData: currentData = [] } = this.props;
+        let { displayList: currentData = [] } = this.state;
 
         currentData.map(item => {
             if (item.name == val) {
@@ -81,15 +81,17 @@ class ShoppingList extends Component {
     }
 
     amountFilteredList = (rangeVal) => {
+        console.log("rangle value", rangeVal)
         // if the price range is between rangeval then add that item to another array
         let tempArr = [];
-        let currentData = this.props.listData;
+        let { displayList: currentData = [] } = this.state;
 
         currentData.map(item => {
             if ((item.price.actual > rangeVal[0]) && (item.price.actual < rangeVal[1])) {
                 tempArr.push(item)
             }
         })
+        console.log("rangle tempar", tempArr)
         this.setState({
             displayList: tempArr
         })
