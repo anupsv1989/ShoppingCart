@@ -1,5 +1,5 @@
 import { Menu } from 'antd';
-import { PureComponent } from 'react';
+import { Component } from 'react';
 import {
     FallOutlined,
     MoneyCollectOutlined,
@@ -13,7 +13,7 @@ const { applySortAction } = actions;
 
 
 const { SubMenu } = Menu;
-class Sorter extends PureComponent {
+class Sorter extends Component {
 
     state = {
         current: 'mail',
@@ -26,12 +26,16 @@ class Sorter extends PureComponent {
             current: e.key,
         });
 
+        let payload = "";
         if (active == "highlow") {
-            this.props.applySortAction("HL");
+            payload = "HL";
+            this.props.applySortAction(payload);
         } else if (active == "lowhigh") {
-            this.props.applySortAction("LH");
+            payload = "LH";
+            this.props.applySortAction(payload);
         } else if (active == "discount") {
-            this.props.applySortAction("DIS");
+            payload = "DIS";
+            this.props.applySortAction(payload);
         } else {
             console.log("Else")
         }
