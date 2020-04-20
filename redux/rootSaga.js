@@ -44,7 +44,10 @@ function* onFetchItem() {
 
     let errMsg = "Error in fetching data."
     try {
-        const searchResult = yield call(fetchListData);//Saga is suspended until the Promise returned by call
+        // const searchResult = yield call(fetchListData);//Saga is suspended until the Promise returned by call
+        // commented the api call and appended static data as all the api links have expired .
+
+        const searchResult = [{ "name": "item 1", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 2", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 3", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 4", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 5", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 6", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 7", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 8", "price": { "actual": 319, "display": 900 }, "discount": 64 }];
         if (searchResult !== undefined) {
             if (searchResult.items.length > 0) {
                 yield put(actions.onFetchItemSuccess(searchResult));//which instructs the middleware to dispatch a action
