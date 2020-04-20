@@ -53,11 +53,11 @@ class Sorter extends Component {
                     </Menu.Item>
                     <Menu.Item key="highlow">
                         <FallOutlined />
-                        Price -- High Low
+                        Price -- Low High
                     </Menu.Item>
                     <Menu.Item key="lowhigh">
                         <RiseOutlined />
-                        Price -- Low High
+                        Price -- High Low
                     </Menu.Item>
                     <Menu.Item key="discount">
                         <MoneyCollectOutlined />

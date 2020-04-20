@@ -23,7 +23,6 @@ class ShoppingList extends Component {
         this.setState({
             displayList: nextProps.listData
         })
-        console.log("NExt props ----111----sorted arr--->", nextProps.applySortActionData)
         if (nextProps.renderSortedData && nextProps.renderSortedData.length > 0) {
 
             this.setState({
@@ -37,7 +36,6 @@ class ShoppingList extends Component {
             this.searchFilteredList(nextProps.applySearchFilter);
         }
         if (nextProps.applySortActionData && nextProps.applySortActionData != "") {
-            console.log("NExt props --------sorted arr--->", nextProps.applySortActionData)
             this.sortFilteredList(nextProps.applySortActionData);
         }
     }
@@ -119,9 +117,6 @@ class ShoppingList extends Component {
     }
 
     render() {
-        const { listData: displayList = [] } = this.props;
-
-        console.log("renderSortedData <<<<<>>>>>> renderSortedData", this.props.renderSortedData)
         console.log("renderSortedData <<<<<>>>>>> display list", this.state.displayList)
 
         return (
