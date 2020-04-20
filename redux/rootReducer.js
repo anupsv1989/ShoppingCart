@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case "FETCH_ITEM_SUCCESS":
             console.log("Inside reducer", action.result)
-            newState.shoppingListData = action.result.items
+            newState.shoppingListData = action.result
             break;
 
         case "GET_ITEMS_IN_CART":
