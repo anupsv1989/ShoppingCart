@@ -42,10 +42,12 @@ const reducer = (state = initialState, action) => {
 
         case "APPLY_FILTER":
             newState.applyRangeFilter = action.payload
+            newState.applySortActionData = "";
             break;
 
         case "APPLY_SEARCH":
             newState.applySearchFilter = action.payload
+            newState.applySortActionData = "";
             break;
 
         case "APPLY_SORT":

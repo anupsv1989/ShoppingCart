@@ -36,11 +36,11 @@ class ShoppingList extends Component {
             this.searchFilteredList(nextProps.applySearchFilter);
         }
         if (nextProps.applySortActionData && nextProps.applySortActionData != "") {
-            this.sortFilteredList(nextProps.applySortActionData);
+            this.sortedList(nextProps.applySortActionData);
         }
     }
 
-    sortFilteredList = (type) => {
+    sortedList = (type) => {
         let items = this.props.listData;
         items.sort(function (a, b) {
             if (type == "LH") {
