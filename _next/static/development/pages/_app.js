@@ -10974,49 +10974,103 @@ function onFetchItem() {
 
           errMsg = "Error in fetching data.";
           _context3.prev = 2;
-          _context3.next = 5;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["call"])(fetchListData);
-
-        case 5:
-          searchResult = _context3.sent;
+          // const searchResult = yield call(fetchListData);//Saga is suspended until the Promise returned by call
+          // commented the api call and appended static data as all the api links have expired .
+          searchResult = [{
+            "name": "item 1",
+            "price": {
+              "actual": 319,
+              "display": 900
+            },
+            "discount": 64
+          }, {
+            "name": "item 2",
+            "price": {
+              "actual": 319,
+              "display": 900
+            },
+            "discount": 64
+          }, {
+            "name": "item 3",
+            "price": {
+              "actual": 319,
+              "display": 900
+            },
+            "discount": 64
+          }, {
+            "name": "item 4",
+            "price": {
+              "actual": 319,
+              "display": 900
+            },
+            "discount": 64
+          }, {
+            "name": "item 5",
+            "price": {
+              "actual": 319,
+              "display": 900
+            },
+            "discount": 64
+          }, {
+            "name": "item 6",
+            "price": {
+              "actual": 319,
+              "display": 900
+            },
+            "discount": 64
+          }, {
+            "name": "item 7",
+            "price": {
+              "actual": 319,
+              "display": 900
+            },
+            "discount": 64
+          }, {
+            "name": "item 8",
+            "price": {
+              "actual": 319,
+              "display": 900
+            },
+            "discount": 64
+          }];
 
           if (!(searchResult !== undefined)) {
-            _context3.next = 14;
-            break;
-          }
-
-          if (!(searchResult.items.length > 0)) {
             _context3.next = 12;
             break;
           }
 
-          _context3.next = 10;
+          if (!(searchResult.items.length > 0)) {
+            _context3.next = 10;
+            break;
+          }
+
+          _context3.next = 8;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_action__WEBPACK_IMPORTED_MODULE_2__["default"].onFetchItemSuccess(searchResult));
 
-        case 10:
-          _context3.next = 14;
+        case 8:
+          _context3.next = 12;
           break;
+
+        case 10:
+          _context3.next = 12;
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_action__WEBPACK_IMPORTED_MODULE_2__["default"].onFetchItemError(errMsg));
 
         case 12:
-          _context3.next = 14;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_action__WEBPACK_IMPORTED_MODULE_2__["default"].onFetchItemError(errMsg));
-
-        case 14:
-          _context3.next = 20;
+          _context3.next = 18;
           break;
 
-        case 16:
-          _context3.prev = 16;
+        case 14:
+          _context3.prev = 14;
           _context3.t0 = _context3["catch"](2);
-          _context3.next = 20;
+          _context3.next = 18;
           return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_1__["put"])(_action__WEBPACK_IMPORTED_MODULE_2__["default"].onFetchItemError(errMsg));
 
-        case 20:
+        case 18:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked, null, [[2, 16]]);
+  }, _marked, null, [[2, 14]]);
 }
 
 function rootSaga() {
