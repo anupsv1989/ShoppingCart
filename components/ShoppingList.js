@@ -23,7 +23,9 @@ class ShoppingList extends Component {
         this.setState({
             displayList: nextProps.listData
         })
+        console.log("NExt props ----displ------->", nextProps.displayList)
         if (nextProps.renderSortedData && nextProps.renderSortedData.length > 0) {
+            console.log("NExt props ----------->", nextProps.renderSortedData)
             this.setState({
                 displayList: nextProps.renderSortedData
             })
@@ -92,6 +94,7 @@ class ShoppingList extends Component {
         const { listData: displayList = [] } = this.props;
 
         console.log("renderSortedData <<<<<>>>>>> renderSortedData", this.props.renderSortedData)
+        console.log("renderSortedData <<<<<>>>>>> display list", this.state.displayList)
 
         return (
             <div>
