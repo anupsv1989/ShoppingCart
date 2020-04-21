@@ -26,7 +26,7 @@ module.exports = withCSS(withLess(withSass({
         // Perform customizations to webpack config
         // Important: return the modified config
         // config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
-        
+
         config.plugins.push(
             new webpack.DefinePlugin({
                 'process.env.ASSET_PREFIX': JSON.stringify(assetPrefix),

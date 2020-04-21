@@ -47,7 +47,16 @@ function* onFetchItem() {
         // const searchResult = yield call(fetchListData);//Saga is suspended until the Promise returned by call
         // commented the api call and appended static data as all the api links have expired .
 
-        const searchResult = [{ "name": "item 1", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 2", "price": { "actual": 419, "display": 900 }, "discount": 64 }, { "name": "item 3", "price": { "actual": 519, "display": 900 }, "discount": 64 }, { "name": "item 4", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 5", "price": { "actual": 619, "display": 900 }, "discount": 64 }, { "name": "item 6", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 7", "price": { "actual": 319, "display": 900 }, "discount": 64 }, { "name": "item 8", "price": { "actual": 319, "display": 900 }, "discount": 64 }];
+        const searchResult = [
+            { "name": "item 1", "price": { "actual": 100, "display": 1000 }, "discount": 90 },
+            { "name": "item 2", "price": { "actual": 200, "display": 1000 }, "discount": 80 },
+            { "name": "item 3", "price": { "actual": 300, "display": 1000 }, "discount": 70 },
+            { "name": "item 4", "price": { "actual": 400, "display": 1000 }, "discount": 60 },
+            { "name": "item 5", "price": { "actual": 500, "display": 1000 }, "discount": 50 },
+            { "name": "item 6", "price": { "actual": 600, "display": 1000 }, "discount": 40 },
+            { "name": "item 7", "price": { "actual": 700, "display": 1000 }, "discount": 30 },
+            { "name": "item 8", "price": { "actual": 800, "display": 1000 }, "discount": 20 }
+        ];
         if (searchResult !== undefined) {
             console.log("Inside sAga On Fethc Item 1 ", searchResult)
             if (searchResult.length > 0) {

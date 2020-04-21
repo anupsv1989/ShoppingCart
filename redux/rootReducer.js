@@ -1,5 +1,5 @@
 import actions from "./action";
-
+import { notification } from 'antd';
 
 
 const initialState = {
@@ -24,10 +24,22 @@ const reducer = (state = initialState, action) => {
             break;
 
         case "ADD_ITEM_TO_CART":
-            console.log("Addinf more items ", action.payload)
             let tempData = action.payload;
+            let existingItems = newState.itemsInCart;
             let { itemsInCart: temp = [] } = newState;
-            temp.push(tempData);
+            if (existingItems && existingItems.length > 1) {
+                if (existingItems.some(existingItems => existingItems.item.name === action.payload.item.name)) {
+                    notification["warning"]({
+                        message: action.payload.item.name,
+                        description:
+                            'Item already exits in cart!',
+                    });
+                } else {
+                    temp.push(tempData);
+                }
+            } else {
+                temp.push(tempData);
+            }
             newState.itemsInCart = temp;
             console.log("After Adding items", newState.itemsInCart)
             break;
