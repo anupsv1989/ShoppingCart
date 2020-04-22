@@ -20,8 +20,12 @@ class CartIcon extends Component {
         this.props.getItemsinCart();
     }
 
-    render() {
+    componentWillReceiveProps(nextProps) {
+        console.log("NExtprops in Cart ICON -----------> ", nextProps)
+    }
 
+    render() {
+        console.log("total items in cart : ", this.props.cartNumber)
         return (
             <span>
                 <Badge count={this.props.itemsInCart ? this.props.itemsInCart.length : 0}>
@@ -37,6 +41,7 @@ class CartIcon extends Component {
 const mapStateToProps = state => {
     return {
         itemsInCart: state.itemsInCart,
+        cartNumber: state.cartNumber,
     };
 };
 

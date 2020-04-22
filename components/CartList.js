@@ -6,7 +6,7 @@ import actions from "../redux/action";
 import { connect } from "react-redux";
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 
-const { getItemsinCart } = actions;
+const { getItemsinCart, deleteItemfromCart } = actions;
 
 class CartList extends Component {
 
@@ -94,10 +94,14 @@ class CartList extends Component {
     removeItems = (item, idx) => {
         let arr = this.state.cartDisplayItems;
         let _this = this;
-        let index = arr.map(x => {
-            return x.key;
-        }).indexOf(item.key);
-        arr.splice(index, 1);
+        // let index = arr.map(x => {
+        //     return x.key;
+        // }).indexOf(item.key);
+        // arr.splice(index, 1);
+
+        this.props.deleteItemfromCart(item);
+        // this.props.deleteItemfromCart(arr.length);
+
         this.setState({
             cartDisplayItems: arr
         }, () => {
@@ -227,5 +231,5 @@ const mapStateToProps = state => {
 
 
 export default connect(
-    mapStateToProps, { getItemsinCart }
+    mapStateToProps, { getItemsinCart, deleteItemfromCart }
 )(CartList);

@@ -8,6 +8,7 @@ const initialState = {
     applyRangeFilter: [],
     applySearchFilter: "",
     applySortActionData: "",
+    cartNumber: "",
 };
 const reducer = (state = initialState, action) => {
     const newState = { ...state };
@@ -41,15 +42,16 @@ const reducer = (state = initialState, action) => {
                 temp.push(tempData);
             }
             newState.itemsInCart = temp;
-            console.log("After Adding items", newState.itemsInCart)
+            newState.cartNumber = temp.length;
             break;
 
         case "DELETE_ITEM_FROM_CART":
-            console.log("Addinf more items ", action.payload)
-            let tempDelData = action.payload;
-            let tempDel = newState.itemsInCart;
-            tempDel.push(tempDelData);
-            newState.itemsInCart = tempDel;
+
+            let existingDelItems = newState.itemsInCart;
+            let ind = existingDelItems.findIndex(x => x.item.name === action.payload.name);
+            existingDelItems.splice(ind, 1);
+            newState.itemsInCart = existingDelItems;
+            newState.cartNumber = existingDelItems.length;
             break;
 
         case "APPLY_FILTER":
