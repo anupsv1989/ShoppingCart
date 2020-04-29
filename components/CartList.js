@@ -148,18 +148,20 @@ class CartList extends Component {
                                             </Col>
                                             <Col span={6}>
                                                 <div className="cartContainerDiv__cartLeftNav--cartListText">
-                                                    <Button type="primary" shape="circle" icon={<PlusOutlined />}
-                                                        size="middle"
-                                                        onClick={() => this.increment(i.item, index)} />
-
-                                                    <Button type="dashed" style={{ margin: "5px" }}>
-                                                        {this.state[index + i.item.name] > 0 ? this.state[index + i.item.name] : this.state.initialItems}
-                                                    </Button>
 
                                                     <Button type="primary" shape="circle" icon={<MinusOutlined />}
                                                         size="middle"
                                                         disabled={this.state[index + i.item.name] == 1 ? true : false}
                                                         onClick={() => this.decrement(i.item, index)} />
+
+                                                    <Button type="dashed" style={{ margin: "5px" }}>
+                                                        {this.state[index + i.item.name] > 0 ? this.state[index + i.item.name] : this.state.initialItems}
+                                                    </Button>
+
+                                                    <Button type="primary" shape="circle" icon={<PlusOutlined />}
+                                                        size="middle"
+                                                        onClick={() => this.increment(i.item, index)} />
+
                                                 </div>
                                             </Col>
                                             <Col span={6}>
@@ -193,10 +195,10 @@ class CartList extends Component {
                                         </Col>
                                     </Row>
                                     <hr />
-                                    <Row gutter={16} className="cartContainerDiv__cartRightNav--row">
+                                    <Row gutter={16} className="cartContainerDiv__cartRightNav--row cartContainerDiv__cartRightNav--total">
                                         <Col span={16}>
                                             Total
-                                </Col>
+                                        </Col>
                                         <Col span={8}>
                                             {this.state.totalPriceOfItems}
                                         </Col>
